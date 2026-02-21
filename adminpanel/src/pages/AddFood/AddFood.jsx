@@ -12,7 +12,7 @@ const AddFood = () => {
         price:'',
         category: 'Biryani'
     });
- 
+
     const onChangeHandler = (event) => {
         const name = event.target.name;
         const value = event.target.value;

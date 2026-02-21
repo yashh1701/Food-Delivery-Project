@@ -14,16 +14,16 @@ const App = () => {
     setSidebarVisible(!sidebarVisible);
   }
   return (
-    <div className="d-flex" id="wrapper">
+    <div className="d-flex" id="wrapper" style={{ minHeight: "100vh" }} >
             
       <Sidebar sidebarVisible={sidebarVisible}/>
             
-      <div id="page-content-wrapper">
+      <div id="page-content-wrapper" className="flex-grow-1">
                 
         <Menubar toggleSidebar={toggleSidebar} />
         <ToastContainer/>
                 
-        <div className="container-fluid">
+        <div className="container-fluid p-4">
           <Routes>
             <Route path='/add' element={<AddFood />} />
             <Route path='/list' element={<ListFood />} />
