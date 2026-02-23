@@ -5,10 +5,11 @@ import com.foodDelivery.io.FoodResponse;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 public interface FoodService {
 
-    String uploadFile(MultipartFile file);
+    public Map<String, String> uploadFile(MultipartFile file);
     String getUrlFromPublicId(String publicId);
 
     FoodResponse addFood(FoodRequest request, MultipartFile file);

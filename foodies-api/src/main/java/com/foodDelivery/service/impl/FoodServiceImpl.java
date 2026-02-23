@@ -30,41 +30,37 @@ public class FoodServiceImpl implements FoodService {
 
 
     @Override
-    public String uploadFile(MultipartFile file) {
-        /*This method is for uploading food image to cloudinary and return the url of that image.
-            then we can store that url in database*/
-
-        // 1. Validate file
+    public Map<String, String> uploadFile(MultipartFile file)   {
         if (file == null || file.isEmpty())
         {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Image file is missing or empty");
         }
 
-        // 2. Validate file type
         String contentType = file.getContentType();
-        if (!contentType.startsWith("image/"))
+        if (contentType == null || !contentType.startsWith("image/"))
         {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST ,"Only image files are allowed");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Only image files are allowed");
         }
 
-        try {
-            // 3. Upload image to Cloudinary (PUBLIC + IMAGE)
-            Map<String, Object> uploadResult = cloudinary.uploader().upload(
-                    file.getBytes(),                    // ✅ correct way
+        try
+        {
+            String publicId = UUID.randomUUID().toString();
+            Map<String, Object> uploadResult = cloudinary.uploader().upload(file.getBytes(),
                     ObjectUtils.asMap(
                             "resource_type", "image",
-                            "type", "upload"              // ✅ public delivery
+                            "public_id", publicId,
+                            "type", "upload"
                     )
             );
-
-            // 4. Return Cloudinary secure URL (DO NOT generate manually)
-            return uploadResult.get("secure_url").toString();
-
+            String secureUrl = uploadResult.get("secure_url").toString();
+            return Map.of(
+                    "publicId", publicId,
+                    "imageUrl", secureUrl
+            );
         }
         catch (IOException e)
         {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "Error occurred while uploading image to Cloudinary",e);
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Error occurred while uploading image to Cloudinary", e);
         }
 
     }
@@ -85,9 +81,11 @@ public class FoodServiceImpl implements FoodService {
 
     @Override
     public FoodResponse addFood(FoodRequest request, MultipartFile file) {
+
         FoodEntity newFoodEntity = convertToEntity(request);
-        String imageUrl = uploadFile(file);
-        newFoodEntity.setImageUrl(imageUrl);
+        Map<String, String> uploadData = uploadFile(file);
+        newFoodEntity.setImageUrl(uploadData.get("imageUrl"));
+        newFoodEntity.setImagePublicId(uploadData.get("publicId"));  // 🔥 IMPORTANT
         newFoodEntity = foodRepository.save(newFoodEntity);
         return convertToResponse(newFoodEntity);
     }
@@ -97,7 +95,6 @@ public class FoodServiceImpl implements FoodService {
 
         List<FoodEntity> databaseEntries = foodRepository.findAll();
         return databaseEntries.stream().map(object -> convertToResponse(object)).collect(Collectors.toList());
-
     }
 
     @Override
@@ -110,20 +107,28 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public void deleteFood(String id) {
 
-        FoodResponse response = readFood(id);
-        String imageUrl = response.getImageUrl();
-        String filename = imageUrl.substring(imageUrl.lastIndexOf("/")+1);
-        boolean isFileDelete = deleteFile(filename);
-        if (isFileDelete) {
-            foodRepository.deleteById(response.getId());
+        FoodEntity food = foodRepository.findById(id).orElseThrow(() ->new RuntimeException("Food not found for id: " + id));
+        try
+        {
+            // Try deleting image (optional safety)
+            deleteFile(food.getImagePublicId());
+        }
+        catch (Exception e) {
+            System.out.println("Image delete failed but continuing DB delete");
+        }
+        // ALWAYS delete DB record
+        foodRepository.delete(food);
+    }
+
+    public boolean deleteFile(String publicId) {
+        try {
+            Map result = cloudinary.uploader().destroy(publicId,ObjectUtils.asMap("resource_type", "image"));
+            return "ok".equals(result.get("result"));
+        }
+        catch (IOException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,"Error deleting file from Cloudinary", e);
         }
     }
-
-    @Override
-    public boolean deleteFile(String filename) {
-        return false;
-    }
-
 
     private FoodEntity convertToEntity(FoodRequest request) {
         return FoodEntity.builder()
@@ -132,7 +137,6 @@ public class FoodServiceImpl implements FoodService {
                 .category(request.getCategory())
                 .price(request.getPrice())
                 .build();
-
     }
 
     private FoodResponse convertToResponse(FoodEntity entity) {
@@ -145,4 +149,6 @@ public class FoodServiceImpl implements FoodService {
                 .imageUrl(entity.getImageUrl())
                 .build();
     }
+
+
 }
