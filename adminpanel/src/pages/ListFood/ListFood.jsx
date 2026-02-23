@@ -126,56 +126,56 @@ const ListFood = () => {
 
       {/* Confirm Delete Modal */}
       {deleteId && (
-          <>
-            {/* Backdrop */}
-            <div
-              style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100vw",
-                height: "100vh",
-                background: "rgba(0,0,0,0.5)",
-                zIndex: 1040
-              }}
+    <>
+      {/* Backdrop */}
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          background: "rgba(0,0,0,0.5)",
+          zIndex: 1040
+        }}
+        onClick={() => setDeleteId(null)}
+      ></div>
+
+      {/* Modal */}
+      <div
+        style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          zIndex: 1050
+        }}
+      >
+        <div className="card shadow-lg border-0 rounded-4 p-4" style={{ width: "420px" }}>
+          <h5 className="fw-bold mb-3 text-center">Confirm Delete</h5>
+          <p className="text-muted text-center">
+            Are you sure you want to delete this food item?
+          </p>
+
+          <div className="d-flex justify-content-center gap-3 mt-4">
+            <button
+              className="btn btn-light rounded-pill px-4"
               onClick={() => setDeleteId(null)}
-            ></div>
-
-            {/* Modal */}
-            <div
-              style={{
-                position: "fixed",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                zIndex: 1050
-              }}
             >
-              <div className="card shadow-lg border-0 rounded-4 p-4" style={{ width: "420px" }}>
-                <h5 className="fw-bold mb-3 text-center">Confirm Delete</h5>
-                <p className="text-muted text-center">
-                  Are you sure you want to delete this food item?
-                </p>
+              Cancel
+            </button>
 
-                <div className="d-flex justify-content-center gap-3 mt-4">
-                  <button
-                    className="btn btn-light rounded-pill px-4"
-                    onClick={() => setDeleteId(null)}
-                  >
-                    Cancel
-                  </button>
-
-                  <button
-                    className="btn btn-danger rounded-pill px-4"
-                    onClick={removeFood}
-                  >
-                    Yes, Delete
-                  </button>
-                </div>
-              </div>
-            </div>
-          </>
-        )}
+            <button
+              className="btn btn-danger rounded-pill px-4"
+              onClick={removeFood}
+            >
+              Yes, Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  )}
 
     </div>
   );
