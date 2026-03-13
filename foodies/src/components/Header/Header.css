@@ -1,12 +1,131 @@
-.header {
-    padding: 5rem;
-    margin-bottom: 1rem;
-    border-radius: 0.3rem;
-    margin-top: 0.25rem;
-    color: white;
-    background-image: url("../../assets/header.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+/* HERO SECTION */
+
+.header{
+  position:relative;
+  height:65vh;
+  min-height:420px;
+  border-radius:20px;
+  margin:12px 0;
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+
+  padding-left:80px;
+
+  background-image:url("../../assets/header.png");
+  background-size:cover;
+  background-position:center;
+
+  transition:transform .4s ease;
 }
-  
+
+/* slight hover zoom */
+
+.header:hover{
+  transform:scale(1.01);
+}
+
+/* IMPROVED OVERLAY */
+
+.header-overlay{
+  position:absolute;
+  inset:0;
+
+  /* smooth gradient from left to right */
+  background:linear-gradient(
+    90deg,
+    rgba(0,0,0,0.70) 0%,
+    rgba(0,0,0,0.55) 35%,
+    rgba(0,0,0,0.30) 55%,
+    rgba(0,0,0,0.10) 75%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+/* CONTENT */
+
+.header-content{
+  position:relative;
+  max-width:600px;
+  color:white;
+  z-index:2;
+
+  animation:fadeUp .8s ease;
+}
+
+/* TITLE */
+
+.header-content h1{
+  font-size:54px;
+  font-weight:700;
+  line-height:1.2;
+
+  text-shadow:0 6px 20px rgba(0,0,0,0.6);
+}
+
+/* SUBTITLE */
+
+.header-content p{
+  font-size:20px;
+  margin-top:16px;
+  opacity:0.95;
+
+  text-shadow:0 3px 10px rgba(0,0,0,0.5);
+}
+
+/* BUTTON */
+
+.explore-btn{
+  display:inline-block;
+  margin-top:28px;
+
+  padding:14px 36px;
+
+  border-radius:35px;
+
+  background:linear-gradient(135deg,#ff7a18,#ff3d3d);
+
+  color:white;
+  font-weight:600;
+  text-decoration:none;
+
+  transition:all .3s ease;
+}
+
+.explore-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(0,0,0,0.35);
+}
+
+/* TEXT ANIMATION */
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.header{
+  padding-left:30px;
+  height:55vh;
+}
+
+.header-content h1{
+  font-size:34px;
+}
+
+.header-content p{
+  font-size:16px;
+}
+
+}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./Menubar.css";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,10 +6,14 @@ import { StoreContext } from "../../context/StoreContext";
 
 const Menubar = () => {
   const [active, setActive] = useState("home");
-  const {quantities, token, setToken, setQuantities } = useContext(StoreContext);
+  const { quantities, token, setToken, setQuantities } = useContext(StoreContext);
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
   const uniqueItemsInCart = Object.values(quantities).filter(
     (qty) => qty > 0
   ).length;
+
   const navigate = useNavigate();
 
   const logout = () => {
@@ -18,92 +22,127 @@ const Menubar = () => {
     setQuantities({});
     navigate("/");
   };
+
+  /* APPLY THEME */
+
+  useEffect(() => {
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <nav className="navbar navbar-expand-lg premium-navbar">
       <div className="container">
-        <Link to="/">
+
+        {/* LOGO */}
+        <Link to="/" className="navbar-brand d-flex align-items-center">
           <img
             src={assets.logo}
             alt=""
-            className="mx-4"
-            height={48}
-            width={48}
+            height={42}
+            width={42}
+            className="logo-img"
           />
+          <span className="brand-text">FoodHub</span>
         </Link>
+
+        {/* MOBILE BUTTON */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
+          {/* NAV LINKS */}
+          <ul className="navbar-nav mx-auto nav-links">
+
             <li className="nav-item">
               <Link
-                className={
-                  active === "home" ? "nav-link fw-bold active" : "nav-link"
-                }
+                className={active === "home" ? "nav-link active-link" : "nav-link"}
                 to="/"
                 onClick={() => setActive("home")}
               >
                 Home
               </Link>
             </li>
+
             <li className="nav-item">
               <Link
-                className={
-                  active === "explore" ? "nav-link fw-bold active" : "nav-link"
-                }
+                className={active === "explore" ? "nav-link active-link" : "nav-link"}
                 to="/explore"
                 onClick={() => setActive("explore")}
               >
                 Explore
               </Link>
             </li>
+
             <li className="nav-item">
               <Link
                 className={
                   active === "contact-us"
-                    ? "nav-link fw-bold active"
+                    ? "nav-link active-link"
                     : "nav-link"
                 }
                 to="/contact"
                 onClick={() => setActive("contact-us")}
               >
-                Contact us
+                Contact
               </Link>
             </li>
+
           </ul>
-          <div className="d-flex align-items-center gap-4">
-            <Link to={`/cart`}>
-              <div className="position-relative">
+
+          {/* RIGHT SIDE */}
+          <div className="d-flex align-items-center gap-3">
+
+            {/* THEME BUTTON */}
+
+            <button
+              className="theme-toggle-btn"
+              onClick={toggleTheme}
+            >
+              {theme === "light" ? "🌙" : "☀️"}
+            </button>
+
+            {/* CART */}
+            <Link to="/cart">
+              <div className="cart-container">
                 <img
                   src={assets.cart}
                   alt=""
-                  height={28}
-                  width={28}
-                  className="position-relative"
+                  height={26}
+                  width={26}
                 />
-                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
-                  {uniqueItemsInCart}
-                </span>
+
+                {uniqueItemsInCart > 0 && (
+                  <span className="cart-badge">
+                    {uniqueItemsInCart}
+                  </span>
+                )}
               </div>
             </Link>
+
+            {/* AUTH */}
             {!token ? (
               <>
                 <button
-                  className="btn btn-outline-primary btn-sm"
+                  className="btn login-btn"
                   onClick={() => navigate("/login")}
                 >
                   Login
                 </button>
+
                 <button
-                  className="btn btn-outline-success btn-sm"
+                  className="btn register-btn"
                   onClick={() => navigate("/register")}
                 >
                   Register
@@ -111,34 +150,43 @@ const Menubar = () => {
               </>
             ) : (
               <div className="dropdown text-end">
+
                 <a
-                  href="#"
-                  className="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                  className="profile-toggle"
                   data-bs-toggle="dropdown"
-                  aria-expanded="false"
                 >
                   <img
                     src={assets.profile}
                     alt=""
-                    width={32}
-                    height={32}
+                    width={36}
+                    height={36}
                     className="rounded-circle"
                   />
                 </a>
-                <ul className="dropdown-menu text-small">
+
+                <ul className="dropdown-menu dropdown-menu-end profile-menu shadow">
+
                   <li
                     className="dropdown-item"
                     onClick={() => navigate("/myorders")}
                   >
-                    Orders
+                    My Orders
                   </li>
-                  <li className="dropdown-item" onClick={logout}>
+
+                  <li
+                    className="dropdown-item"
+                    onClick={logout}
+                  >
                     Logout
                   </li>
+
                 </ul>
+
               </div>
             )}
+
           </div>
+
         </div>
       </div>
     </nav>

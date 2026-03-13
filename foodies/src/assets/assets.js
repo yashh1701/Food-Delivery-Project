@@ -8,6 +8,9 @@ import icecream from './icecream.png';
 import pizza from './pizza.png';
 import rolls from './rolls.png';
 import salad from './salad.png';
+import noodles from './noodles.png';
+import tacos from './tacos.png';
+import drinks from './drinks.png';
 
 import profile from './profile.png';
 import delivery from './delivery.png';
@@ -47,5 +50,19 @@ export const categories = [
     {
         category: 'Salad',
         icon: salad
+    },
+    {
+        category: "Noodles",
+        icon: noodles
+    },
+
+    {
+        category: "Tacos",
+        icon: tacos
+    },
+
+    {
+        category: "Drinks",
+        icon: drinks
     }
 ];

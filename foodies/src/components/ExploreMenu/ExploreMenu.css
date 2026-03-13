@@ -1,48 +1,131 @@
-.explore-menu-list::-webkit-scrollbar {
-    display: none;
+/* HEADER */
+
+.explore-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.explore-menu-list {
-    scrollbar-width: none;
+.explore-title{
+  font-weight:700;
+  letter-spacing:.5px;
 }
 
-.explore-menu-list-item img {
-    cursor: pointer;
+.explore-subtitle{
+  margin-top:5px;
+  color:#777;
+  margin-bottom:20px;
 }
 
-.explore-menu-list-item .active {
-    border: 5px solid tomato;
-    padding: 2px;
+/* CATEGORY LIST */
+
+.explore-menu-list{
+  display:flex;
+  gap:30px;
+  overflow-x:auto;
+  padding:12px 4px;
+
+  scrollbar-width:none;
 }
 
-.explore-menu-list-item p {
-    color: #747474;
-    cursor: pointer;
+.explore-menu-list::-webkit-scrollbar{
+  display:none;
 }
 
-.scroll-icon {
-    font-size: 24px;
-    cursor: pointer;
-    margin-left: 10px;
-    color: #747474;
-    transition: color 0.2s;
+/* CATEGORY ITEM */
+
+.explore-menu-list-item{
+  text-align:center;
+  cursor:pointer;
+  transition:transform .25s ease;
 }
 
-.scroll-icon:hover {
-    color: tomato;
+.explore-menu-list-item:hover{
+  transform:translateY(-8px);
 }
 
-.explore-menu hr {
-    margin: 10px 0px;
-    height: 2px;
-    background-color: #e2e2e2;
-    border: none;
+/* CATEGORY CARD */
+
+.category-card{
+  width:130px;
+  height:130px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#fff;
+
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+
+  transition:all .3s ease;
 }
 
-.explore-menu-list-item .active {
-    border: 4px solid tomato;
+.category-card img{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  transition:transform .3s ease;
 }
 
-.explore-menu-list-item .text-active {
-    color: tomato;
+/* IMAGE HOVER */
+
+.category-card:hover img{
+  transform:scale(1.12);
+}
+
+/* ACTIVE CATEGORY */
+
+.category-card.active{
+  border:3px solid transparent;
+
+  background:
+    linear-gradient(#fff,#fff) padding-box,
+    linear-gradient(135deg,#ff7a18,#ff3d3d) border-box;
+
+  box-shadow:0 10px 30px rgba(255,90,31,0.35);
+}
+
+/* TEXT */
+
+.category-text{
+  margin-top:10px;
+  font-weight:600;
+  color:#666;
+  transition:all .3s ease;
+}
+
+.text-active{
+  color:#ff5a1f;
+}
+
+/* SCROLL ICONS */
+
+.scroll-controls{
+  display:flex;
+  gap:10px;
+}
+
+.scroll-icon{
+  font-size:26px;
+  cursor:pointer;
+  color:#999;
+
+  transition:all .25s ease;
+}
+
+.scroll-icon:hover{
+  color:#ff5a1f;
+  transform:scale(1.2);
+}
+
+/* DIVIDER */
+
+.explore-menu hr{
+  margin-top:25px;
+  height:2px;
+  background:#eee;
+  border:none;
 }

@@ -1,7 +1,140 @@
-.active {
-    color: tomato !important;
+/* NAVBAR */
+.premium-navbar {
+	background: rgba(255, 255, 255, 0.92);
+	backdrop-filter: blur(10px);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	padding: 12px 0;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	transition: all .3s ease;
 }
 
-.dropdown-menu li {
-    cursor: pointer;
+/* LOGO */
+.logo-img {
+	transition: transform .3s ease;
+}
+
+.logo-img:hover {
+	transform: rotate(-10deg) scale(1.1);
+}
+
+.brand-text {
+	font-weight: 700;
+	font-size: 20px;
+	margin-left: 8px;
+	color: #ff5a1f;
+}
+
+/* NAV LINKS */
+.nav-links .nav-link {
+	margin: 0 12px;
+	font-weight: 500;
+	color: #444;
+	position: relative;
+	transition: all .3s ease;
+}
+
+.nav-links .nav-link:hover {
+	color: #ff5a1f;
+}
+
+/* ACTIVE LINK */
+.active-link {
+	color: #ff5a1f !important;
+}
+
+.active-link::after {
+	content: "";
+	position: absolute;
+	left: 20%;
+	bottom: -6px;
+	width: 60%;
+	height: 2px;
+	background: #ff5a1f;
+}
+
+/* CART */
+.cart-container {
+	position: relative;
+	cursor: pointer;
+}
+
+.cart-container img {
+	transition: transform .2s ease;
+}
+
+.cart-container:hover img {
+	transform: scale(1.1);
+}
+
+.cart-badge {
+	position: absolute;
+	top: -6px;
+	right: -8px;
+	background: #ff5a1f;
+	color: white;
+	font-size: 10px;
+	padding: 3px 6px;
+	border-radius: 50%;
+}
+
+/* LOGIN BUTTON */
+.login-btn {
+	background: linear-gradient(135deg, #5afd68, #41d059);
+	color: white;
+	border: none;
+	border-radius: 25px;
+	padding: 6px 20px;
+	font-weight: 600;
+	transition: all .25s ease;
+}
+
+.login-btn:hover {
+	transform: translateY(0px) scale(1.03);
+	box-shadow: 0 8px 20px rgba(16, 150, 23, 0.35);
+}
+
+/* REGISTER BUTTON */
+.register-btn {
+	background: linear-gradient(135deg, #f37a23, #f23b3b);
+	color: white;
+	border: none;
+	border-radius: 25px;
+	padding: 6px 20px;
+	font-weight: 600;
+	transition: all .25s ease;
+}
+
+.register-btn:hover {
+	transform: translateY(0px) scale(1.03);
+	box-shadow: 0 8px 20px rgba(255, 90, 31, 0.35);
+}
+
+/* PROFILE */
+.profile-toggle {
+	cursor: pointer;
+}
+
+.profile-menu {
+	border-radius: 12px;
+	padding: 8px 0;
+}
+
+.dropdown-item:hover {
+	background: #f5f5f5;
+}
+
+/* THEME BUTTON */
+
+.theme-toggle-btn {
+	border: none;
+	background: transparent;
+	font-size: 20px;
+	cursor: pointer;
+	transition: transform .2s ease;
+}
+
+.theme-toggle-btn:hover {
+	transform: scale(1.2);
 }

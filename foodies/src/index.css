@@ -8,3 +8,47 @@ body {
   display: flex;
   flex-direction: column;
 }
+/* LIGHT MODE */
+
+body.light{
+  background:#ffffff;
+  color:#222;
+}
+
+/* DARK MODE */
+
+body.dark{
+  background:#121212;
+  color:#f5f5f5;
+}
+
+/* NAVBAR DARK */
+
+body.dark .premium-navbar{
+  background:rgba(25,25,25,0.95);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+/* LINKS */
+
+body.dark .nav-links .nav-link{
+  color:#ddd;
+}
+
+body.dark .nav-links .nav-link:hover{
+  color:#ff7a18;
+}
+
+/* DROPDOWN */
+
+body.dark .dropdown-menu{
+  background:#1e1e1e;
+  color:#fff;
+}
+
+/* CARD STYLE */
+
+body.dark .card{
+  background:#1e1e1e;
+  color:#eee;
+}
