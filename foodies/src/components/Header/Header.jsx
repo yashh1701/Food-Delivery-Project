@@ -15,7 +15,7 @@ const Header = () => {
         </h1>
 
         <p>
-          Discover the best food and drinks in Bengaluru
+          Discover the best food and drinks in Pune
         </p>
 
         <Link to="/explore" className="explore-btn">

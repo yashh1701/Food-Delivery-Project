@@ -3,47 +3,57 @@ import { categories } from "../../assets/assets";
 import "./ExploreMenu.css";
 
 const ExploreMenu = ({ category, setCategory }) => {
+
   const menuRef = useRef(null);
 
   const scrollLeft = () => {
     if (menuRef.current) {
-      menuRef.current.scrollBy({ left: -300, behavior: "smooth"  });
+      menuRef.current.scrollBy({ left: -300, behavior: "smooth" });
     }
   };
 
   const scrollRight = () => {
     if (menuRef.current) {
-      menuRef.current.scrollBy({ left: 300, behavior: "smooth"  });
+      menuRef.current.scrollBy({ left: 300, behavior: "smooth" });
     }
   };
 
   return (
-    <div className="explore-menu position-relative">
+    <section className="explore-menu">
+
+      {/* HEADER */}
 
       <div className="explore-header">
-        <h1 className="explore-title">Explore Our Menu</h1>
+
+        <div>
+          <h1 className="explore-title">Explore Our Menu</h1>
+          <p className="explore-subtitle">
+            Discover delicious dishes from our curated categories
+          </p>
+        </div>
 
         <div className="scroll-controls">
-          <i
-            className="bi bi-arrow-left-circle scroll-icon"
-            onClick={scrollLeft}
-          ></i>
-          <i
-            className="bi bi-arrow-right-circle scroll-icon"
-            onClick={scrollRight}
-          ></i>
+
+          <button className="scroll-btn" onClick={scrollLeft}>
+            <i className="bi bi-arrow-left"></i>
+          </button>
+
+          <button className="scroll-btn" onClick={scrollRight}>
+            <i className="bi bi-arrow-right"></i>
+          </button>
+
         </div>
+
       </div>
 
-      <p className="explore-subtitle">
-        Explore curated lists of dishes from top categories
-      </p>
+      {/* CATEGORY SCROLLER */}
 
-      <div
-        className="explore-menu-list"
-        ref={menuRef}
-      >
+      <div className="explore-menu-list" ref={menuRef}>
+
         {categories.map((item, index) => {
+
+          const isActive = item.category === category;
+
           return (
             <div
               key={index}
@@ -55,37 +65,26 @@ const ExploreMenu = ({ category, setCategory }) => {
               }
             >
 
-              <div
-                className={
-                  item.category === category
-                    ? "category-card active"
-                    : "category-card"
-                }
-              >
+              <div className={isActive ? "category-card active" : "category-card"}>
+
                 <img
                   src={item.icon}
                   alt={item.category}
                 />
+
               </div>
 
-              <p
-                className={
-                  item.category === category
-                    ? "category-text text-active"
-                    : "category-text"
-                }
-              >
+              <p className={isActive ? "category-text active-text" : "category-text"}>
                 {item.category}
               </p>
 
             </div>
           );
         })}
+
       </div>
 
-      <hr />
-
-    </div>
+    </section>
   );
 };
 

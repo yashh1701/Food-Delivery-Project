@@ -1,10 +1,185 @@
-.contact-form {
-    background-color: #f8f9fa;
-    border-radius: 20px;
+/* CONTACT SECTION */
+
+.contact-section{
+  padding:80px 0;
 }
 
-.custom-input {
-    border-radius: 10px;
-    padding: 12px;
-    border: 2px solid #e9ecef;
+/* CONTACT LAYOUT */
+
+.contact-wrapper{
+  align-items:center;
+}
+
+/* CONTACT INFO LEFT SIDE */
+
+.contact-info{
+  padding:40px;
+}
+
+.contact-info h2{
+  font-weight:800;
+  margin-bottom:15px;
+  color:var(--text-color);
+}
+
+.contact-info p{
+  color:var(--muted-text);
+  margin-bottom:25px;
+  line-height:1.6;
+}
+
+/* CONTACT ITEMS */
+
+.contact-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:15px;
+  font-size:15px;
+  color:var(--text-color);
+}
+
+.contact-item i{
+  font-size:20px;
+  color:#ff5a1f;
+}
+
+/* CONTACT FORM CARD */
+
+.contact-form-card{
+
+  background:var(--card-bg);
+
+  border-radius:18px;
+
+  padding:40px;
+
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
+
+  transition:all .3s ease;
+
+  color:var(--text-color);
+
+}
+
+.contact-form-card:hover{
+  transform:translateY(-5px);
+}
+
+/* FORM TITLE */
+
+.contact-form-card h3{
+  font-weight:700;
+  margin-bottom:20px;
+  color:var(--text-color);
+}
+
+/* INPUT FIELDS */
+
+.custom-input{
+
+  border-radius:10px;
+
+  padding:12px;
+
+  border:1px solid #e4e4e4;
+
+  background:var(--input-bg);
+
+  color:var(--text-color);
+
+  transition:all .2s ease;
+
+}
+
+.custom-input::placeholder{
+  color:#9b9b9b;
+}
+
+/* INPUT FOCUS */
+
+.custom-input:focus{
+
+  border-color:#ff5a1f;
+
+  box-shadow:0 0 0 0.15rem rgba(255,90,31,0.2);
+
+}
+
+/* SEND BUTTON */
+
+.send-btn{
+
+  width:100%;
+
+  border:none;
+
+  padding:12px;
+
+  border-radius:30px;
+
+  background:linear-gradient(
+    135deg,
+    #ff7a18,
+    #ff512f
+  );
+
+  color:white;
+
+  font-weight:600;
+
+  transition:all .25s ease;
+
+}
+
+.send-btn:hover{
+
+  transform:translateY(-2px);
+
+  box-shadow:0 10px 25px rgba(255,90,31,0.35);
+
+}
+
+
+/* ---------- THEME VARIABLES ---------- */
+
+/* LIGHT MODE */
+
+:root{
+
+  --text-color:#222;
+
+  --muted-text:#6b6b6b;
+
+  --card-bg:#ffffff;
+
+  --input-bg:#ffffff;
+
+}
+
+
+/* DARK MODE */
+
+body.dark{
+
+  --text-color:#e5e5e5;
+
+  --muted-text:#aaaaaa;
+
+  --card-bg:#1f1f1f;
+
+  --input-bg:#2a2a2a;
+
+}
+
+/* DARK MODE SHADOW */
+
+body.dark .contact-form-card{
+  box-shadow:0 15px 40px rgba(0,0,0,0.6);
+}
+
+/* DARK MODE INPUT BORDER */
+
+body.dark .custom-input{
+  border:1px solid #3a3a3a;
 }

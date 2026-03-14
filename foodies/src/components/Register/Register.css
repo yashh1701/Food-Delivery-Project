@@ -1,9 +1,221 @@
-.register-container {
-    background-image: url("../../assets/login.jpeg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
+/* PAGE LAYOUT */
+
+.register-page{
+   display:flex;
+   min-height:90vh;
+}
+
+/* LEFT SIDE FORM */
+
+.register-left{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(
+    135deg,
+    #ff7a18,
+    #ff512f
+  );
+  padding:40px;
+}
+
+/* FORM CARD */
+
+.register-card{
+  width:400px;
+  padding:45px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(12px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.25);
+  text-align:center;
+  animation:cardFloat .6s ease;
+}
+
+/* TITLE */
+
+.register-card h2{
+  font-weight:800;
+  color:#222;
+}
+
+/* SUBTITLE */
+
+.subtitle{
+  font-size:14px;
+  font-weight:500;
+  color:#555;
+  margin-bottom:25px;
+}
+
+/* INPUT */
+
+.register-input{
+  width:100%;
+  padding:12px;
+  margin-bottom:16px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  background:white;
+  color:#222;
+  transition:.2s;
+}
+
+.register-input::placeholder{
+  color:#9d9999;
+  font-size:16px;
+  font-weight:500;
+}
+
+.register-input:focus{
+  border-color:#ff5a1f;
+  box-shadow:0 0 0 0.15rem rgba(255,90,31,0.25);
+}
+
+/* CREATE BUTTON */
+
+.register-btn{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:30px;
+  font-weight:600;
+  color:white;
+  background:linear-gradient(
+    135deg,
+    #ff7a18,
+    #ff512f
+  );
+  transition:.25s;
+}
+
+.register-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 5px 12px rgba(255,90,31,0.35);
+}
+
+/* RESET */
+
+.reset-btn{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  border-radius:30px;
+  background:#e9e9e9;
+  color:#222;
+}
+
+.reset-btn:hover{
+  background:#dcdcdc;
+}
+
+/* FOOTER */
+
+.register-footer{
+  margin-top:20px;
+  font-size:14px;
+  font-weight:500;
+  color:#444;
+  text-align:center;
+}
+
+.register-footer a{
+  color:#ff5a1f;
+  font-weight:600;
+  text-decoration:none;
+}
+
+/* RIGHT SIDE IMAGE */
+
+.register-right{
+  flex:1;
+  background-image:url("https://images.unsplash.com/photo-1513104890138-7c749659a591");
+  background-size:cover;
+  background-position:center;
+  position:relative;
+  overflow:hidden;
+}
+
+/* OVERLAY */
+
+.register-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  text-align:center;
+  padding:40px;
+}
+
+/* TEXT ANIMATION */
+
+.register-overlay h1{
+  font-weight:800;
+  font-size:42px;
+  animation:fadeSlide 1s ease;
+}
+
+.register-overlay p{
+  margin-top:12px;
+  opacity:.9;
+  font-size:16px;
+  animation:fadeSlide 1.4s ease;
+}
+
+/* FEATURE LIST */
+
+.register-features{
+  margin-top:30px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  font-size:15px;
+  opacity:.9;
+  animation:fadeSlide 1.8s ease;
+}
+
+/* CARD ANIMATION */
+
+@keyframes cardFloat{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* TEXT ANIMATION */
+
+@keyframes fadeSlide{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* RESPONSIVE */
+
+@media (max-width:900px){
+
+  .register-right{
+    display:none;
+  }
+
+  .register-page{
+    margin-top:60px;
+  }
+
 }

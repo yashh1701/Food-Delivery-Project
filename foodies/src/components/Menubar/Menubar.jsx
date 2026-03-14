@@ -5,14 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
 
 const Menubar = () => {
+
   const [active, setActive] = useState("home");
   const { quantities, token, setToken, setQuantities } = useContext(StoreContext);
 
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  const uniqueItemsInCart = Object.values(quantities).filter(
-    (qty) => qty > 0
-  ).length;
+  const uniqueItemsInCart = Object.values(quantities).filter(q => q > 0).length;
 
   const navigate = useNavigate();
 
@@ -22,8 +21,6 @@ const Menubar = () => {
     setQuantities({});
     navigate("/");
   };
-
-  /* APPLY THEME */
 
   useEffect(() => {
     document.body.className = theme;
@@ -40,25 +37,27 @@ const Menubar = () => {
 
         {/* LOGO */}
         <Link to="/" className="navbar-brand d-flex align-items-center">
-          <img
-            src={assets.logo}
-            alt=""
-            height={42}
-            width={42}
-            className="logo-img"
-          />
+          <img src={assets.logo} alt="" height={42} width={42} className="logo-img"/>
           <span className="brand-text">FoodHub</span>
         </Link>
 
-        {/* MOBILE BUTTON */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        {/* MOBILE HEADER ACTIONS */}
+        <div className="mobile-header">
+
+          <button className="theme-toggle-btn" onClick={toggleTheme}>
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
+
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+        </div>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -87,11 +86,7 @@ const Menubar = () => {
 
             <li className="nav-item">
               <Link
-                className={
-                  active === "contact-us"
-                    ? "nav-link active-link"
-                    : "nav-link"
-                }
+                className={active === "contact-us" ? "nav-link active-link" : "nav-link"}
                 to="/contact"
                 onClick={() => setActive("contact-us")}
               >
@@ -101,32 +96,20 @@ const Menubar = () => {
 
           </ul>
 
-          {/* RIGHT SIDE */}
-          <div className="d-flex align-items-center gap-3">
+          {/* RIGHT ACTIONS */}
+          <div className="nav-actions">
 
-            {/* THEME BUTTON */}
-
-            <button
-              className="theme-toggle-btn"
-              onClick={toggleTheme}
-            >
+            {/* DESKTOP THEME BUTTON */}
+            <button className="theme-toggle-btn desktop-theme" onClick={toggleTheme}>
               {theme === "light" ? "🌙" : "☀️"}
             </button>
 
             {/* CART */}
-            <Link to="/cart">
+            <Link to="/cart" className="cart-link">
               <div className="cart-container">
-                <img
-                  src={assets.cart}
-                  alt=""
-                  height={26}
-                  width={26}
-                />
-
+                <img src={assets.cart} alt="" height={26} width={26}/>
                 {uniqueItemsInCart > 0 && (
-                  <span className="cart-badge">
-                    {uniqueItemsInCart}
-                  </span>
+                  <span className="cart-badge">{uniqueItemsInCart}</span>
                 )}
               </div>
             </Link>
@@ -134,27 +117,18 @@ const Menubar = () => {
             {/* AUTH */}
             {!token ? (
               <>
-                <button
-                  className="btn login-btn"
-                  onClick={() => navigate("/login")}
-                >
-                  Login
+                <button className="login-btn" onClick={() => navigate("/login")}>
+                  Login 
                 </button>
 
-                <button
-                  className="btn register-btn"
-                  onClick={() => navigate("/register")}
-                >
+                <button className="register-btn" onClick={() => navigate("/register")}>
                   Register
                 </button>
               </>
             ) : (
               <div className="dropdown text-end">
 
-                <a
-                  className="profile-toggle"
-                  data-bs-toggle="dropdown"
-                >
+                <a className="profile-toggle" data-bs-toggle="dropdown">
                   <img
                     src={assets.profile}
                     alt=""
