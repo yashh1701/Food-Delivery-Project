@@ -1,20 +1,126 @@
-.cart-item img {
-    max-width: 100px;
-    height: auto;
+.cart-title{
+font-weight:700;
 }
 
-.quantity-input {
-    width: 50px;
+.cart-item-card{
+background:white;
+padding:20px;
+border-radius:14px;
+box-shadow:0 8px 24px rgba(0,0,0,0.06);
+transition:all .25s ease;
 }
 
-.cart-summary {
-    background-color: #f8f9fa;
-    border-radius: 10px;
+.cart-item-card:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 30px rgba(0,0,0,0.1);
 }
 
-.cart-item hr {
-    margin-top: 10px;
-    height: 2px;
-    background-color: #e2e2e2;
-    border: none;
+.cart-food-img{
+width:90px;
+height:90px;
+object-fit:cover;
+border-radius:10px;
+transition:transform .25s ease;
+}
+
+.cart-food-img:hover{
+transform:scale(1.08);
+}
+
+.food-name{
+font-weight:600;
+}
+
+.food-category{
+font-size:14px;
+color:#777;
+}
+
+/* QUANTITY CONTROL */
+
+.qty-control{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.qty-control button{
+width:30px;
+height:30px;
+border:none;
+border-radius:6px;
+background:#f3f3f3;
+font-weight:600;
+}
+
+.qty-control span{
+min-width:20px;
+text-align:center;
+font-weight:600;
+}
+
+/* PRICE */
+
+.item-price{
+font-weight:600;
+}
+
+.remove-btn{
+border:none;
+background:transparent;
+color:#ff4d4f;
+font-size:18px;
+}
+
+/* CONTINUE BUTTON */
+
+.continue-btn{
+text-decoration:none;
+font-weight:600;
+color:#ff5a1f;
+}
+
+/* ORDER SUMMARY */
+
+.order-summary{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 8px 24px rgba(0,0,0,0.06);
+}
+
+.summary-row{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+}
+
+.summary-row.total{
+font-weight:700;
+font-size:18px;
+}
+
+/* CHECKOUT BUTTON */
+
+.checkout-btn{
+width:100%;
+padding:12px;
+border:none;
+border-radius:30px;
+background:linear-gradient(135deg,#ff7a18,#ff3d2f);
+color:white;
+font-weight:600;
+transition:all .25s ease;
+}
+
+.checkout-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(255,90,31,0.35);
+}
+
+/* EMPTY CART */
+
+.empty-cart{
+padding:80px 0;
+color:#777;
 }
