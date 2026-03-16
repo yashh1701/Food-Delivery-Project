@@ -53,10 +53,10 @@ background:#f3f3f3;
 font-weight:600;
 }
 
-.qty-control span{
-min-width:20px;
-text-align:center;
-font-weight:600;
+.qty-control span{ 
+min-width:20px; 
+text-align:center; 
+font-weight:600; 
 }
 
 /* PRICE */
