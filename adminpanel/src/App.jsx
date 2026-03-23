@@ -1,39 +1,45 @@
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AddFood from './pages/AddFood/AddFood';
 import ListFood from './pages/ListFood/ListFood';
 import Orders from './pages/Orders/Orders';
 import Sidebar from './components/Sidebar/Sidebar';
 import { ToastContainer } from 'react-toastify';
-import Menubar from './components/Menubar/menubar';
+import Menubar from './components/Menubar/Menubar';
+import "./App.css";
 
 const App = () => {
-  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [sidebarVisible] = useState(true);
+  const [darkMode, setDarkMode] = useState(true); // default dark
+  const [orders, setOrders] = useState([]);
 
-  const toggleSidebar = () => {
-    setSidebarVisible(!sidebarVisible);
-  }
   return (
-    <div className="d-flex" id="wrapper" style={{ minHeight: "100vh" }} >
-            
-      <Sidebar sidebarVisible={sidebarVisible}/>
-            
-      <div id="page-content-wrapper" className="flex-grow-1">
-                
-        <Menubar toggleSidebar={toggleSidebar} />
-        <ToastContainer/>
-                
-        <div className="container-fluid p-4">
+    <div className={darkMode ? "app dark" : "app"}>
+
+      <Sidebar sidebarVisible={sidebarVisible} darkMode={darkMode} />
+
+      <div className="main-layout">
+
+        <Menubar
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+          orderCount={orders.length}
+        />
+
+        <ToastContainer />
+
+        <div className="page-content">
           <Routes>
             <Route path='/add' element={<AddFood />} />
             <Route path='/list' element={<ListFood />} />
-            <Route path='/orders' element={<Orders />} />
+            <Route path='/orders' element={<Orders setOrders={setOrders} />} />
             <Route path='/' element={<ListFood />} />
-            </Routes>
-          </div>
+          </Routes>
         </div>
+
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default App;

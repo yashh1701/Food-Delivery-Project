@@ -1,157 +1,162 @@
 import React, { useState } from 'react';
-import {assets} from '../../assets/assets';
-import axios from 'axios';
+import { assets } from '../../assets/assets';
 import { addFood } from '../../services/foodService';
 import { toast } from 'react-toastify';
+import { motion } from "framer-motion";
+import "./AddFood.css";
 
 const AddFood = () => {
-    const [image, setImage] = useState(false);
-    const [data, setData] = useState({
-        name:'',
+  const [image, setImage] = useState(false);
+  const [data, setData] = useState({
+    name: '',
+    description: '',
+    price: '',
+    category: 'Biryani'
+  });
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    if (!image) {
+      toast.error('Please select an image.');
+      return;
+    }
+
+    try {
+      await addFood(data, image);
+      toast.success('Food added successfully.');
+
+      setData({
+        name: '',
         description: '',
-        price:'',
-        category: 'Biryani'
-    });
+        category: 'Biryani',
+        price: ''
+      });
 
-    const onChangeHandler = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setData(data => ({...data, [name]: value}));
+      setImage(null);
+    } catch {
+      toast.error('Error adding food.');
     }
+  };
 
-    const onSubmitHandler = async (event) => {
-        event.preventDefault();
-        if (!image) {
-            toast.error('Please select an image.');
-            return;
-        }
-        try {
-            await addFood(data, image);
-            toast.success('Food added successfully.');
-            setData({name: '', description: '', category: 'Biryani', price: ''});
-            setImage(null);
-        } catch (error) {
-            toast.error('Error adding food.');
-        }
-    }
   return (
-    <div className="container py-5">
-      <div className="row justify-content-center">
-        <div className="col-lg-8">
-          <div className="card border-0 shadow-lg rounded-4">
-            
-            <div className="card-body p-5">
-              
-              <h2 className="fw-bold mb-4 text-center">
-                🍽️ Add New Food Item
-              </h2>
+  <div className="addfood-page">
 
-              <form onSubmit={onSubmitHandler}>
+    <motion.form
+      onSubmit={onSubmitHandler}
+      className="addfood-form"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+    >
 
-                {/* IMAGE UPLOAD */}
-                <div className="mb-4 text-center">
-                  <label htmlFor="image" style={{ cursor: "pointer" }}>
-                    <div
-                      className="rounded-4 border border-2 border-dashed p-4 d-flex flex-column align-items-center justify-content-center"
-                      style={{ background: "#f8f9fa" }}
-                    >
-                      <img
-                        src={image ? URL.createObjectURL(image) : assets.upload}
-                        alt=""
-                        style={{ width: "120px", objectFit: "contain" }}
-                      />
-                      <p className="mt-3 mb-0 text-muted">
-                        Click to upload food image
-                      </p>
-                    </div>
-                  </label>
+      {/* HEADER */}
+      <motion.div 
+        className="form-header"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+      >
+        <h2>Add New Food</h2>
+        <p>Fill details to add a new item</p>
+      </motion.div>
 
-                  <input
-                    type="file"
-                    className="form-control d-none"
-                    id="image"
-                    onChange={(e) => setImage(e.target.files[0])}
-                  />
-                </div>
+      {/* IMAGE */}
+      <motion.div 
+        className="form-section"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
+        <label>Food Image</label>
 
-                {/* NAME */}
-                <div className="mb-4">
-                  <label className="form-label fw-semibold">Food Name</label>
-                  <input
-                    type="text"
-                    placeholder="Chicken Biryani"
-                    className="form-control form-control-lg rounded-3"
-                    required
-                    name="name"
-                    onChange={onChangeHandler}
-                    value={data.name}
-                  />
-                </div>
+        <label htmlFor="image" className="upload-box">
+          <img
+            src={image ? URL.createObjectURL(image) : assets.upload}
+            alt=""
+          />
+          <span>Click to upload</span>
+        </label>
 
-                {/* DESCRIPTION */}
-                <div className="mb-4">
-                  <label className="form-label fw-semibold">Description</label>
-                  <textarea
-                    className="form-control rounded-3"
-                    placeholder="Write delicious description..."
-                    rows="4"
-                    required
-                    name="description"
-                    onChange={onChangeHandler}
-                    value={data.description}
-                  />
-                </div>
+        <input
+          type="file"
+          id="image"
+          hidden
+          onChange={(e) => setImage(e.target.files[0])}
+        />
+      </motion.div>
 
-                {/* CATEGORY & PRICE */}
-                <div className="row">
-                  <div className="col-md-6 mb-4">
-                    <label className="form-label fw-semibold">Category</label>
-                    <select
-                      name="category"
-                      className="form-select rounded-3"
-                      onChange={onChangeHandler}
-                      value={data.category}
-                    >
-                      <option value="Biryani">Biryani</option>
-                      <option value="Cake">Cake</option>
-                      <option value="Burger">Burger</option>
-                      <option value="Pizza">Pizza</option>
-                      <option value="Rolls">Rolls</option>
-                      <option value="Salad">Salad</option>
-                      <option value="Ice cream">Ice cream</option>
-                    </select>
-                  </div>
+      {/* FORM GRID */}
+      <div className="form-grid">
 
-                  <div className="col-md-6 mb-4">
-                    <label className="form-label fw-semibold">Price (₹)</label>
-                    <input
-                      type="number"
-                      name="price"
-                      placeholder="200"
-                      className="form-control rounded-3"
-                      onChange={onChangeHandler}
-                      value={data.price}
-                    />
-                  </div>
-                </div>
-
-                {/* SUBMIT BUTTON */}
-                <div className="d-grid mt-3">
-                  <button
-                    type="submit"
-                    className="btn btn-dark btn-lg rounded-3"
-                  >
-                    🚀 Save Food Item
-                  </button>
-                </div>
-
-              </form>
-            </div>
-          </div>
+        <div className="field full">
+          <label>Food Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="e.g. Chicken Biryani"
+            value={data.name}
+            onChange={onChangeHandler}
+            required
+          />
         </div>
+
+        <div className="field full">
+          <label>Description</label>
+          <textarea
+            name="description"
+            rows="3"
+            placeholder="Write something delicious..."
+            value={data.description}
+            onChange={onChangeHandler}
+            required
+          />
+        </div>
+
+        <div className="field">
+          <label>Category</label>
+          <select
+            name="category"
+            value={data.category}
+            onChange={onChangeHandler}
+          >
+            <option>Biryani</option>
+            <option>Cake</option>
+            <option>Burger</option>
+            <option>Pizza</option>
+            <option>Rolls</option>
+            <option>Salad</option>
+            <option>Ice cream</option>
+          </select>
+        </div>
+
+        <div className="field">
+          <label>Price (₹)</label>
+          <input
+            type="number"
+            name="price"
+            placeholder="200"
+            value={data.price}
+            onChange={onChangeHandler}
+            required
+          />
+        </div>
+
       </div>
-    </div>
-  );
-}
+
+      {/* ACTION */}
+      <div className="form-actions">
+        <button type="submit">Save Food Item</button>
+      </div>
+
+    </motion.form>
+  </div>
+);
+};
 
 export default AddFood;

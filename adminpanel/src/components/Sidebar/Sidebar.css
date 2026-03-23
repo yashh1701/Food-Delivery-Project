@@ -1,0 +1,179 @@
+/* ===== ROOT ===== */
+.sidebar {
+  width: 260px;
+  min-height: 100vh;
+
+  position: sticky;
+  top: 0;
+
+  padding: 26px 18px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+}
+
+/* ===== DARK MODE (IMPROVED) ===== */
+.sidebar.dark {
+  background: rgba(2,6,23,0.85); /* 🔥 matches app dark */
+  border-right: 1px solid rgba(255,255,255,0.06);
+  color: #e2e8f0;
+}
+
+/* ===== OVERLAY ===== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ===== LOGO ===== */
+.logo-section {
+  text-align: center;
+}
+
+.logo-card {
+  width: 70px;
+  height: 70px;
+  margin: auto;
+
+  border-radius: 20px;
+  padding: 12px;
+
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
+  box-shadow: 0 12px 35px rgba(255,122,24,0.45);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.3s;
+}
+
+.logo-card:hover {
+  transform: scale(1.05);
+}
+
+.logo-card img {
+  width: 40px;
+}
+
+.logo-section h4 {
+  margin-top: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.logo-section p {
+  font-size: 0.78rem;
+  opacity: 0.6;
+}
+
+/* ===== MENU ===== */
+.menu {
+  margin-top: 30px;
+}
+
+/* ITEM */
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 16px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  color: #475569;
+  transition: all 0.25s ease;
+}
+
+.sidebar.dark .menu-item {
+  color: #cbd5e1;
+}
+
+/* DARK */
+.sidebar.dark {
+  background: #020617;
+  border-right: 1px solid #1e293b;
+  color: #e2e8f0;
+}
+
+/* HOVER */
+.menu-item:hover {
+  background: rgba(255,255,255,0.6);
+  transform: translateX(4px);
+}
+
+.sidebar.dark .menu-item:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+/* ICON */
+.menu-item i {
+  font-size: 1.2rem;
+  z-index: 2;
+}
+
+/* TEXT */
+.menu-item span {
+  z-index: 2;
+  font-weight: 500;
+}
+
+/* ===== ACTIVE ===== */
+.active-pill {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
+  box-shadow: 0 10px 30px rgba(255,122,24,0.4);
+
+  z-index: 1;
+}
+
+/* ACTIVE TEXT */
+.menu-item.active span,
+.menu-item.active i {
+  color: white;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  font-size: 0.78rem;
+  opacity: 0.6;
+}
+
+/* ===== GLOBAL DARK FIX (IMPORTANT) ===== */
+.app.dark .sidebar {
+  background: rgba(2,6,23,0.9);
+}
+
+/* ===== MOBILE ===== */
+@media (min-width: 768px) {
+  .overlay {
+    display: none;
+  }
+
+  .sidebar {
+    position: relative;
+    transform: none !important;
+  }
+}

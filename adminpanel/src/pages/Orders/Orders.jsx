@@ -3,13 +3,17 @@ import { assets } from "../../assets/assets";
 import { fetchAllOrders, updateOrderStatus } from "../../services/orderService";
 import { toast } from "react-toastify";
 
-const Orders = () => {
+const Orders = ({ setOrders }) => {   // 🔥 ADD THIS
   const [data, setData] = useState([]);
 
   const fetchOrders = async () => {
     try {
       const response = await fetchAllOrders();
       setData(response);
+      // 🔥 UPDATE GLOBAL ORDER COUNT
+      if (setOrders) {
+        setOrders(response);
+      }
     } catch (error) {
       toast.error("Unable to display the orders. Please try again.");
     }
@@ -17,7 +21,7 @@ const Orders = () => {
 
   const updateStatus = async (event, orderId) => {
     const success = await updateOrderStatus(orderId, event.target.value);
-    if (success) await fetchOrders();
+    if (success) await fetchOrders(); // 🔥 will auto update count again
   };
 
   useEffect(() => {
@@ -75,4 +79,3 @@ const Orders = () => {
 };
 
 export default Orders;
-  
