@@ -11,7 +11,7 @@ const AddFood = () => {
     name: '',
     description: '',
     price: '',
-    category: 'Biryani'
+    category: 'Select Category'
   });
 
   const onChangeHandler = (e) => {
@@ -125,6 +125,7 @@ const AddFood = () => {
             value={data.category}
             onChange={onChangeHandler}
           >
+            <option>- Select Category -</option>
             <option>Biryani</option>
             <option>Cake</option>
             <option>Burger</option>

@@ -6,11 +6,11 @@ import Orders from './pages/Orders/Orders';
 import Sidebar from './components/Sidebar/Sidebar';
 import { ToastContainer } from 'react-toastify';
 import Menubar from './components/Menubar/Menubar';
-import "./App.css";
+import './App.css';
 
 const App = () => {
-  const [sidebarVisible] = useState(true);
-  const [darkMode, setDarkMode] = useState(true); // default dark
+  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [orders, setOrders] = useState([]);
 
   return (
@@ -18,7 +18,8 @@ const App = () => {
 
       <Sidebar sidebarVisible={sidebarVisible} darkMode={darkMode} />
 
-      <div className="main-layout">
+      {/* 🔥 MAIN CONTENT FIX */}
+      <div className="main-content">
 
         <Menubar
           darkMode={darkMode}

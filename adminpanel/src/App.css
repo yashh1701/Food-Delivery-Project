@@ -1,23 +1,19 @@
-/* ===== RESET ===== */
-* {
-  box-sizing: border-box;
-}
-
-/* ===== APP LAYOUT ===== */
+/* ===== APP BASE ===== */
 .app {
-  display: flex;
-  min-height: 100vh;
   background: #f8fafc;
+  min-height: 100vh;
 }
 
-/* DARK MODE */
+/* DARK */
 .app.dark {
   background: #020617;
 }
 
-/* ===== MAIN CONTENT ===== */
-.main-layout {
-  flex: 1;
+/* ===== MAIN CONTENT FIX ===== */
+.main-content {
+  margin-left: 260px; /* 🔥 SAME AS SIDEBAR WIDTH */
+  min-height: 100vh;
+
   display: flex;
   flex-direction: column;
 }
@@ -25,15 +21,5 @@
 /* ===== PAGE CONTENT ===== */
 .page-content {
   flex: 1;
-  padding: 40px 24px;
-
-  display: flex;
-  justify-content: center;
-
-  background: transparent;
-}
-
-/* DARK FIX */
-.app.dark .page-content {
-  background: #020617;
+  padding: 24px;
 }

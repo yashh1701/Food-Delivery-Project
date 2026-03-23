@@ -22,7 +22,7 @@ const Menubar = ({ darkMode, setDarkMode, orderCount = 0 }) => {
         <h2>{title}</h2>
       </div>
 
-      {/* CENTER SEARCH */}
+      {/* CENTER */}
       <div className="center">
         <div className="search">
           <i className="bi bi-search"></i>
@@ -41,7 +41,7 @@ const Menubar = ({ darkMode, setDarkMode, orderCount = 0 }) => {
           <i className={`bi ${darkMode ? "bi-moon-fill" : "bi-sun-fill"}`} />
         </button>
 
-        {/* NOTIFICATION (UNCHANGED) */}
+        {/* NOTIFICATION */}
         <div className="notification" onClick={() => navigate("/orders")}>
           <span className="bell-icon">
             <i className="bi bi-bell"></i>
