@@ -3,15 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import "./Sidebar.css";
 
-const Sidebar = ({ sidebarVisible, darkMode }) => {
+const Sidebar = ({ sidebarVisible, darkMode, setSidebarVisible }) => {
   const location = useLocation();
 
   const menuItems = [
     { name: "Add Food", path: "/add", icon: "bi-plus-circle" },
     { name: "List Food", path: "/list", icon: "bi-grid" },
     { name: "Orders", path: "/orders", icon: "bi-bag" },
-
-    // 🔥 NEW (FILLING MENU)
     { name: "Dashboard", path: "/dashboard", icon: "bi-speedometer2" },
     { name: "Analytics", path: "/analytics", icon: "bi-bar-chart" },
     { name: "Settings", path: "/settings", icon: "bi-gear" }
@@ -23,7 +21,15 @@ const Sidebar = ({ sidebarVisible, darkMode }) => {
         sidebarVisible ? "show" : ""
       }`}
     >
-      {/* ===== HEADER ===== */}
+
+      {/* CLOSE BUTTON (MOBILE) */}
+      <div className="sidebar-close">
+        <button onClick={() => setSidebarVisible(false)}>
+          <i className="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      {/* HEADER */}
       <div className="sidebar-header">
         <div className="logo-box">
           <img src={assets.logo} alt="logo" />
@@ -33,7 +39,7 @@ const Sidebar = ({ sidebarVisible, darkMode }) => {
         <span>Admin Panel</span>
       </div>
 
-      {/* ===== MENU ===== */}
+      {/* MENU */}
       <div className="sidebar-menu">
         {menuItems.map((item, index) => {
           const isActive = location.pathname === item.path;
@@ -49,10 +55,11 @@ const Sidebar = ({ sidebarVisible, darkMode }) => {
         })}
       </div>
 
-      {/* ===== FOOTER ===== */}
+      {/* FOOTER */}
       <div className="sidebar-footer">
         © 2026 FoodHub
       </div>
+
     </aside>
   );
 };

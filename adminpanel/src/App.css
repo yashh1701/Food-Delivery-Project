@@ -1,25 +1,56 @@
-/* ===== APP BASE ===== */
+/* =========================================================
+   APP BASE
+========================================================= */
 .app {
   background: #f8fafc;
   min-height: 100vh;
 }
 
-/* DARK */
 .app.dark {
   background: #020617;
 }
 
-/* ===== MAIN CONTENT FIX ===== */
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
 .main-content {
-  margin-left: 260px; /* 🔥 SAME AS SIDEBAR WIDTH */
+  margin-left: 260px; /* sidebar width */
   min-height: 100vh;
 
   display: flex;
   flex-direction: column;
+
+  transition: margin-left 0.3s ease;
 }
 
-/* ===== PAGE CONTENT ===== */
+/* =========================================================
+   PAGE CONTENT
+========================================================= */
 .page-content {
   flex: 1;
   padding: 24px;
+}
+
+/* =========================================================
+   SIDEBAR OVERLAY (MOBILE)
+========================================================= */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 900;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .page-content {
+    padding: 16px;
+  }
 }

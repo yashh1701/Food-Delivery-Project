@@ -8,21 +8,42 @@
 
 /* ===== FORM ===== */
 .addfood-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: #f1f5f9;
+  padding: 8px 14px;
+  border-radius: 12px;
+
+  width: 380px;
+  transition: all 0.2s ease;
+}
+
+.addfood-form:hover {
+  background: white;
+  box-shadow: 0 0 0 2px rgba(255,122,24,0.25);
+}
+
+.addfood-form:focus-within {
+  background: white;
+  box-shadow: 0 0 0 2px rgba(255,122,24,0.25);
+}
+
+.addfood-form {
   width: 100%;
   max-width: 820px;
-
   padding: 32px;
-  border-radius: 16px;
 
   display: flex;
   flex-direction: column;
   gap: 26px;
 
+  border-radius: 16px;
   background: #ffffff;
   border: 1px solid #e5e7eb;
 }
 
-/* DARK MODE */
 .app.dark .addfood-form {
   background: #020617;
   border: 1px solid #1e293b;
@@ -37,11 +58,11 @@
   font-size: 1.8rem;
   font-weight: 600;
   letter-spacing: 0.3px;
-  color: #0f172a; /* FIX */
+  color: #0f172a;
 }
 
 .app.dark .form-header h2 {
-  color: #f8fafc; /* FIX */
+  color: #f8fafc;
 }
 
 .form-header p {
@@ -62,17 +83,16 @@
   gap: 12px;
 }
 
-/* LABEL FIX */
 .form-section label {
-  color: #334155; /* FIX */
+  color: #334155;
   font-weight: 500;
 }
 
 .app.dark .form-section label {
-  color: #e2e8f0; /* FIX */
+  color: #e2e8f0;
 }
 
-/* divider */
+/* ===== DIVIDER ===== */
 .form-section + .form-grid {
   border-top: 1px solid #e5e7eb;
   padding-top: 26px;
@@ -87,18 +107,18 @@
   width: 220px;
   height: 140px;
 
-  border-radius: 12px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
+  border-radius: 12px;
   cursor: pointer;
-  transition: 0.25s;
 
   background: #f8fafc;
   border: 1px dashed #cbd5e1;
+
+  transition: 0.25s;
 }
 
 .upload-box:hover {
@@ -119,14 +139,13 @@
   width: 60px;
 }
 
-/* UPLOAD TEXT FIX */
 .upload-box span {
   font-size: 0.8rem;
   color: #64748b;
 }
 
 .app.dark .upload-box span {
-  color: #cbd5f5; /* FIX */
+  color: #cbd5f5;
 }
 
 /* ===== GRID ===== */
@@ -136,20 +155,28 @@
   gap: 20px;
 }
 
+.field {
+  min-width: 0;
+}
+
+.field select {
+  min-width: 120px; 
+}
+
 .field.full {
   grid-column: span 2;
 }
 
-/* ===== LABEL ===== */
+/* ===== FIELD ===== */
 .field label {
   font-size: 0.78rem;
   margin-bottom: 6px;
-  color: #475569; /* FIX */
   font-weight: 500;
+  color: #475569;
 }
 
 .app.dark .field label {
-  color: #cbd5f5; /* FIX */
+  color: #cbd5f5;
 }
 
 /* ===== INPUT ===== */
@@ -162,17 +189,17 @@
   border-radius: 10px;
   font-size: 0.9rem;
 
-  transition: all 0.2s ease;
-
   background: #ffffff;
   border: 1px solid #d1d5db;
-  color: #0f172a; /* FIX */
+  color: #0f172a;
+
+  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* placeholder */
+/* PLACEHOLDER */
 .field input::placeholder,
 .field textarea::placeholder {
-  color: #94a3b8; /* FIX */
+  color: #94a3b8;
 }
 
 .app.dark .field input,
@@ -180,16 +207,15 @@
 .app.dark .field select {
   background: #020617;
   border: 1px solid #334155;
-  color: #e2e8f0; /* FIX */
+  color: #e2e8f0;
 }
 
-/* dark placeholder */
 .app.dark .field input::placeholder,
 .app.dark .field textarea::placeholder {
-  color: #64748b; /* FIX */
+  color: #64748b;
 }
 
-/* hover */
+/* HOVER */
 .field input:hover,
 .field textarea:hover,
 .field select:hover {
@@ -202,7 +228,7 @@
   border-color: #475569;
 }
 
-/* focus */
+/* FOCUS */
 .field input:focus,
 .field textarea:focus,
 .field select:focus {
@@ -221,9 +247,9 @@
 .form-actions {
   display: flex;
   justify-content: flex-end;
+  padding-top: 20px;
 
   border-top: 1px solid #e5e7eb;
-  padding-top: 20px;
 }
 
 .app.dark .form-actions {
@@ -243,7 +269,7 @@
   font-size: 0.9rem;
 
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.2s ease;
 }
 
 .form-actions button:hover {
@@ -259,5 +285,11 @@
 
   .form-actions {
     justify-content: center;
+  }
+}
+@media (max-width: 1024px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 }

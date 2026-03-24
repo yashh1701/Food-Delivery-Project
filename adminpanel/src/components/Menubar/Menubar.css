@@ -22,8 +22,14 @@
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-/* ===== LEFT ===== */
-.left h2 {
+/* ===== LEFT SECTION ===== */
+.menubar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menubar-left h2 {
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0;
@@ -36,7 +42,7 @@
   justify-content: center;
 }
 
-/* ===== SEARCH (UPGRADED) ===== */
+/* ===== SEARCH ===== */
 .search {
   display: flex;
   align-items: center;
@@ -47,7 +53,6 @@
   border-radius: 12px;
 
   width: 380px;
-
   transition: all 0.2s ease;
 }
 
@@ -55,7 +60,6 @@
   background: #e2e8f0;
 }
 
-/* focus glow */
 .search:focus-within {
   background: white;
   box-shadow: 0 0 0 2px rgba(255,122,24,0.25);
@@ -78,7 +82,7 @@
   color: inherit;
 }
 
-/* ===== RIGHT ===== */
+/* ===== RIGHT SECTION ===== */
 .right {
   display: flex;
   align-items: center;
@@ -141,7 +145,7 @@
   font-size: 18px;
 }
 
-/* ===== BADGE (UNCHANGED) ===== */
+/* ===== BADGE ===== */
 .badge {
   position: absolute;
   top: 1px !important;
@@ -153,10 +157,11 @@
   font-size: 10px !important;
   font-weight: 600 !important;
   border-radius: 50% !important;
+
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  transform: translate(0%, 0%) !important;
+
   box-shadow: 0 0 0 2px #fff;
 }
 
@@ -188,13 +193,85 @@
   transform: scale(1.05);
 }
 
-/* ===== MOBILE ===== */
+/* ===== TOGGLE BUTTON ===== */
+.menu-toggle {
+  border: none;
+  background: transparent;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: #0f172a;
+}
+
+.app.dark .menu-toggle {
+  color: #f1f5f9;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* MOBILE */
 @media (max-width: 768px) {
+  .menubar {
+    padding: 0 16px;
+  }
+
   .center {
     display: none;
   }
 
+  .menubar-left {
+    gap: 6px;
+  }
+
+  .menubar-left h2 {
+    font-size: 1rem;
+  }
+}
+
+/* HIDE TOGGLE ON DESKTOP */
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
   .menubar {
     padding: 0 16px;
+  }
+
+  .menubar-left h2 {
+    font-size: 1.1rem;
+  }
+
+  .search {
+    width: 260px;
+    padding: 6px 10px;
+  }
+
+  .search input {
+    font-size: 0.8rem;
+  }
+
+  .right {
+    gap: 10px;
+  }
+
+  .icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.7rem;
+  }
+}
+
+/* SMALL TABLET */
+@media (max-width: 900px) {
+  .center {
+    display: none;
   }
 }

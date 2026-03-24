@@ -9,6 +9,7 @@ const ListFood = () => {
   const [loading, setLoading] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
+  // ===== FETCH =====
   const fetchList = async () => {
     try {
       setLoading(true);
@@ -21,13 +22,13 @@ const ListFood = () => {
     }
   };
 
-  const confirmDelete = (id) => {
-    setDeleteId(id);
-  };
+  // ===== DELETE =====
+  const confirmDelete = (id) => setDeleteId(id);
 
   const removeFood = async () => {
     try {
       const success = await deleteFood(deleteId);
+
       if (success) {
         toast.success("Food removed successfully.");
         setList(prev => prev.filter(item => item.id !== deleteId));
@@ -48,7 +49,7 @@ const ListFood = () => {
   return (
     <div className="listfood-wrapper">
 
-      {/* HEADER */}
+      {/* ===== HEADER ===== */}
       <div className="listfood-header">
         <div>
           <h2>Food Items</h2>
@@ -57,7 +58,7 @@ const ListFood = () => {
         <span className="count">{list.length} Items</span>
       </div>
 
-      {/* CONTENT */}
+      {/* ===== CONTENT ===== */}
       <motion.div
         className="listfood-card"
         initial={{ opacity: 0, y: 30 }}
@@ -72,7 +73,7 @@ const ListFood = () => {
           <div className="empty">No food items available.</div>
         ) : (
           <>
-            {/* DESKTOP TABLE */}
+            {/* ===== DESKTOP TABLE ===== */}
             <div className="table-container">
               <table>
                 <thead>
@@ -80,7 +81,7 @@ const ListFood = () => {
                     <th>Item</th>
                     <th>Category</th>
                     <th>Price</th>
-                    <th></th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
 
@@ -110,7 +111,7 @@ const ListFood = () => {
               </table>
             </div>
 
-            {/* MOBILE CARDS */}
+            {/* ===== MOBILE CARDS ===== */}
             <div className="mobile-list">
               {list.map((item) => (
                 <div className="mobile-card" key={item.id}>
@@ -136,7 +137,7 @@ const ListFood = () => {
 
       </motion.div>
 
-      {/* DELETE MODAL */}
+      {/* ===== DELETE MODAL ===== */}
       {deleteId && (
         <div className="modal-overlay" onClick={() => setDeleteId(null)}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>

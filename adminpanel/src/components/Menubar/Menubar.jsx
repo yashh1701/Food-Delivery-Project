@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Menubar.css";
 
-const Menubar = ({ darkMode, setDarkMode, orderCount = 0 }) => {
+const Menubar = ({ darkMode, setDarkMode, orderCount, setSidebarVisible }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -10,15 +10,25 @@ const Menubar = ({ darkMode, setDarkMode, orderCount = 0 }) => {
     "/add": "Add Food",
     "/list": "Food Items",
     "/orders": "Orders",
+    "/dashboaord": "Dashboaord",
+    "/analytics": "Analytics",
+    "/settings": "Settings"
   };
 
-  const title = titles[location.pathname] || "Dashboard";
+  const title = titles[location.pathname];
 
   return (
     <header className={`menubar ${darkMode ? "dark" : ""}`}>
 
       {/* LEFT */}
-      <div className="left">
+      <div className="menubar-left">
+        <button 
+          className="menu-toggle"
+          onClick={() => setSidebarVisible(prev => !prev)}
+        >
+          <i className="bi bi-list"></i>
+        </button>
+
         <h2>{title}</h2>
       </div>
 
