@@ -1,13 +1,17 @@
 .cart-title{
 font-weight:700;
+color:var(--text-color);
 }
 
+/* ================= CARD ================= */
+
 .cart-item-card{
-background:white;
+background:var(--card-bg);
 padding:20px;
 border-radius:14px;
 box-shadow:0 8px 24px rgba(0,0,0,0.06);
 transition:all .25s ease;
+color:var(--text-color);
 }
 
 .cart-item-card:hover{
@@ -29,14 +33,15 @@ transform:scale(1.08);
 
 .food-name{
 font-weight:600;
+color:var(--text-color);
 }
 
 .food-category{
 font-size:14px;
-color:#777;
+color:var(--muted-text);
 }
 
-/* QUANTITY CONTROL */
+/* ================= QUANTITY ================= */
 
 .qty-control{
 display:flex;
@@ -49,7 +54,8 @@ width:30px;
 height:30px;
 border:none;
 border-radius:6px;
-background:#f3f3f3;
+background:var(--input-bg);
+color:var(--text-color);
 font-weight:600;
 }
 
@@ -57,12 +63,14 @@ font-weight:600;
 min-width:20px; 
 text-align:center; 
 font-weight:600; 
+color:var(--text-color);
 }
 
-/* PRICE */
+/* ================= PRICE ================= */
 
 .item-price{
 font-weight:600;
+color:var(--text-color);
 }
 
 .remove-btn{
@@ -72,7 +80,7 @@ color:#ff4d4f;
 font-size:18px;
 }
 
-/* CONTINUE BUTTON  */
+/* ================= CONTINUE ================= */
 
 .continue-btn{
 text-decoration:none;
@@ -80,13 +88,14 @@ font-weight:600;
 color:#ff5a1f;
 }
 
-/* ORDER SUMMARY */
+/* ================= ORDER SUMMARY ================= */
 
 .order-summary{
-background:white;
+background:var(--card-bg);
 padding:25px;
 border-radius:14px;
 box-shadow:0 8px 24px rgba(0,0,0,0.06);
+color:var(--text-color);
 }
 
 .summary-row{
@@ -95,12 +104,16 @@ justify-content:space-between;
 margin-bottom:10px;
 }
 
+.summary-row span{
+color:var(--text-color);
+}
+
 .summary-row.total{
 font-weight:700;
 font-size:18px;
 }
 
-/* CHECKOUT BUTTON */
+/* ================= BUTTON ================= */
 
 .checkout-btn{
 width:100%;
@@ -118,9 +131,24 @@ transform:translateY(-2px);
 box-shadow:0 8px 20px rgba(255,90,31,0.35);
 }
 
-/* EMPTY CART */
+/* ================= EMPTY ================= */
 
 .empty-cart{
 padding:80px 0;
-color:#777;
+color:var(--muted-text);
+}
+
+.empty-cart h3{
+color:var(--text-color);
+}
+
+.empty-cart p{
+color:var(--muted-text);
+}
+
+/* ================= DARK MODE SHADOW FIX ================= */
+
+body.dark .cart-item-card,
+body.dark .order-summary{
+box-shadow:0 8px 24px rgba(0,0,0,0.6);
 }
