@@ -26,18 +26,23 @@
   width:400px;
   padding:45px;
   border-radius:20px;
-  background:rgba(255,255,255,0.95);
+
+  background:var(--card-bg);          /* 🔥 FIX */
   backdrop-filter:blur(12px);
+
   box-shadow:0 20px 60px rgba(0,0,0,0.25);
+
   text-align:center;
   animation:cardFloat .6s ease;
+
+  color:var(--text-color);            /* 🔥 FIX */
 }
 
 /* TITLE */
 
 .register-card h2{
   font-weight:800;
-  color:#222;
+  color:var(--text-color);            /* 🔥 FIX */
 }
 
 /* SUBTITLE */
@@ -45,7 +50,7 @@
 .subtitle{
   font-size:14px;
   font-weight:500;
-  color:#555;
+  color:var(--muted-text);            /* 🔥 FIX */
   margin-bottom:25px;
 }
 
@@ -55,10 +60,13 @@
   width:100%;
   padding:12px;
   margin-bottom:16px;
+
   border-radius:10px;
   border:1px solid #ddd;
-  background:white;
-  color:#222;
+
+  background:var(--input-bg);         /* 🔥 FIX */
+  color:var(--text-color);            /* 🔥 FIX */
+
   transition:.2s;
 }
 
@@ -101,14 +109,28 @@
   width:100%;
   padding:10px;
   margin-top:10px;
+
   border:none;
   border-radius:30px;
-  background:#e9e9e9;
-  color:#222;
+
+  background:var(--input-bg);
+  color:var(--text-color);
+
+  transition:all .2s ease;
 }
 
 .reset-btn:hover{
   background:#dcdcdc;
+}
+
+body.dark .reset-btn{
+  background:#2a2a2a;
+  color:#e5e5e5;
+}
+
+body.dark .reset-btn:hover{
+  background:#3a3a3a;   /* 🔥 FIX: darker hover instead of white */
+  color:#ffffff;
 }
 
 /* FOOTER */
@@ -117,7 +139,7 @@
   margin-top:20px;
   font-size:14px;
   font-weight:500;
-  color:#444;
+  color:var(--text-color);            /* 🔥 FIX */
   text-align:center;
 }
 
@@ -153,7 +175,7 @@
   padding:40px;
 }
 
-/* TEXT ANIMATION */
+/* TEXT */
 
 .register-overlay h1{
   font-weight:800;
@@ -168,19 +190,7 @@
   animation:fadeSlide 1.4s ease;
 }
 
-/* FEATURE LIST */
-
-.register-features{
-  margin-top:30px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  font-size:15px;
-  opacity:.9;
-  animation:fadeSlide 1.8s ease;
-}
-
-/* CARD ANIMATION */
+/* ANIMATIONS */
 
 @keyframes cardFloat{
   from{
@@ -193,8 +203,6 @@
   }
 }
 
-/* TEXT ANIMATION */
-
 @keyframes fadeSlide{
   from{
     opacity:0;
@@ -204,6 +212,16 @@
     opacity:1;
     transform:translateY(0);
   }
+}
+
+/* DARK MODE IMPROVEMENTS */
+
+body.dark .register-card{
+  box-shadow:0 20px 60px rgba(0,0,0,0.7);
+}
+
+body.dark .register-input{
+  border:1px solid #3a3a3a;
 }
 
 /* RESPONSIVE */
