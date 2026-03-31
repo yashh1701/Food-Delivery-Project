@@ -92,6 +92,20 @@
 
 }
 
+/* 🔥 IMPORTANT FIX (override bootstrap) */
+
+.custom-input.form-control{
+  background:var(--input-bg) !important;
+  color:var(--text-color) !important;
+}
+
+/* TEXTAREA FIX */
+
+textarea.custom-input{
+  background:var(--input-bg) !important;
+  color:var(--text-color) !important;
+}
+
 .custom-input::placeholder{
   color:#9b9b9b;
 }
@@ -172,14 +186,46 @@ body.dark{
 
 }
 
-/* DARK MODE SHADOW */
+/* ================= DARK MODE FIXES ================= */
+
+/* CARD SHADOW */
 
 body.dark .contact-form-card{
   box-shadow:0 15px 40px rgba(0,0,0,0.6);
 }
 
-/* DARK MODE INPUT BORDER */
+/* INPUT BORDER */
 
 body.dark .custom-input{
   border:1px solid #3a3a3a;
+}
+
+/* 🔥 FORCE DARK INPUT (MAIN FIX) */
+
+body.dark .custom-input.form-control{
+  background:#2a2a2a !important;
+  color:#e5e5e5 !important;
+}
+
+/* TEXTAREA */
+
+body.dark textarea.custom-input{
+  background:#2a2a2a !important;
+  color:#e5e5e5 !important;
+}
+
+/* PLACEHOLDER */
+
+body.dark .custom-input::placeholder{
+  color:#888;
+}
+
+/* RESPONSIVE */
+
+@media (max-width:900px){
+
+  .contact-section{
+    padding:60px 0;
+  }
+
 }
