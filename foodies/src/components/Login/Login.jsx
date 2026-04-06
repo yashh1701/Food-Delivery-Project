@@ -110,7 +110,7 @@ const Login = () => {
               className="login-btn"
               type="submit"
             >
-              Sign In
+              Login
             </button>
 
             <button
