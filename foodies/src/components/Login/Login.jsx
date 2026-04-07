@@ -102,7 +102,7 @@ const Login = () => {
               placeholder="Password"
               name="password"
               onChange={onChangeHandler}
-              value={data.password}
+              value={data.password}  
               required
             />
 
