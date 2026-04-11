@@ -225,7 +225,7 @@ body.dark .custom-input::placeholder{
 @media (max-width:900px){
 
   .contact-section{  
-    padding:60px 0;
+     padding:60px 0;
   }
 
 } 
