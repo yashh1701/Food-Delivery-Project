@@ -114,7 +114,7 @@ const Cart = () => {
                       onClick={() => removeFromCart(food.id)}
                     >
 
-                      <i className="bi bi-trash"></i>
+                      <i  className="bi bi-trash"></i>
 
                     </button>
 
