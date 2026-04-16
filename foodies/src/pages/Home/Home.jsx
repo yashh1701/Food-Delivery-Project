@@ -59,7 +59,7 @@ const Home = () => {
         <FoodDisplay
           category={category}
           searchText={''}
-        />  
+        />   
 
       </section>
 
