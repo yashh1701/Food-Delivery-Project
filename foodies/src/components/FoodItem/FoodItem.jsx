@@ -69,7 +69,7 @@ const FoodItem = ({ name, description, id, imageUrl, price }) => {
               <i className="bi bi-cart-plus"></i>
             </button>
           )}
-  
+   
         </div>
 
       </div>
