@@ -95,7 +95,7 @@ const Login = () => {
               value={data.email}
               required
             />
-
+ 
             <input
               type="password"
               className="login-input"
