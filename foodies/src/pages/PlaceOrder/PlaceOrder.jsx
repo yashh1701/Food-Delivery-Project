@@ -227,5 +227,5 @@ const PlaceOrder = () => {
     </div>
   );
 };
- 
+  
 export default PlaceOrder;
