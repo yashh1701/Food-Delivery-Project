@@ -13,8 +13,8 @@ const Login = () => {
   const [data, setData] = useState({
     email: "",
     password: "",
-  });
-
+  }); 
+ 
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -44,7 +44,6 @@ const Login = () => {
       }
 
     } catch (error) {
-
       console.log("Unable to login", error);
       toast.error("Unable to login. Please try again");
 
